@@ -1,0 +1,66 @@
+#!/bin/bash
+#
+# TDB (Text Database) wrapper script
+# Version: 1.0.0.1
+
+# Default installation path
+TDB_PY="${HOME}/.local/lib/tdb/tdb.py"
+
+# Check if TDB is installed
+if [ ! -f "$TDB_PY" ]; then
+    echo "Error: TDB is not installed or not found at $TDB_PY"
+    echo "Please install with: pip3 install textdatabase"
+    exit 1
+fi
+
+# Show help if no arguments
+if [ $# -eq 0 ]; then
+    echo "Text Database (TDB) - A lightweight text file management system"
+    echo "Usage: tdb <operation> [filename] [options]"
+    echo ""
+    echo "Operations:"
+    echo "  new <file>      Create a new text file"
+    echo "  read <file>     Read content from a file"
+    echo "  write <file>    Write content to a file (with backup)"
+    echo "  backup <file>   Create a backup of a file"
+    echo "  recover <file>  Recover file from backup"
+    echo "  remove <file>   Remove a file"
+    echo "  removebak <file> Remove backup file"
+    echo "  readbak <file>  Read content from backup"
+    echo "  list            List all files in database"
+    echo "  dumpdb          Backup entire database"
+    echo "  rmdb            Remove database and uninstall"
+    echo ""
+    echo "Options:"
+    echo "  --force         Force overwrite when creating files"
+    echo "  --data-dir DIR  Use custom data directory"
+    echo ""
+    echo "Examples:"
+    echo "  tdb new notes"
+    echo "  tdb write notes"
+    echo "  tdb read notes"
+    echo "  tdb list"
+    exit 0
+fi
+
+# Parse arguments
+OPERATION="$1"
+shift
+
+# Handle operations without filename
+case "$OPERATION" in
+    list|dumpdb|rmdb)
+        python3 "$TDB_PY" "$OPERATION" "$@"
+        ;;
+    *)
+        # Operations that require filename
+        if [ $# -eq 0 ]; then
+            echo "Error: Operation '$OPERATION' requires a filename!"
+            echo "Usage: tdb $OPERATION <filename>"
+            exit 1
+        fi
+        FILENAME="$1"
+        shift
+        python3 "$TDB_PY" "$OPERATION" "$FILENAME" "$@"
+        ;;
+esac
