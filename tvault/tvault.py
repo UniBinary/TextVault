@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 TextVault (TVault) - A lightweight text file management system
-Version: 1.0.0.1
+Version: 1.1
 Author: GQX
 License: MIT
 """
@@ -19,7 +19,7 @@ class TextVault:
     def __init__(self, data_dir=None):
         """Initialize the vault"""
         if data_dir is None:
-            self.data_dir = Path.home() / ".local" / "lib" / "tdb"
+            self.data_dir = Path.home() / ".local" / "lib" / "tvault" / "data"
         else:
             self.data_dir = Path(data_dir)
         
@@ -242,7 +242,7 @@ class TextVault:
         """Backup the entire database"""
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
-            backup_dir = Path.home() / f"tdb_backup_{timestamp}"
+            backup_dir = Path.home() / f"tvault_backup_{timestamp}"
             
             shutil.copytree(self.data_dir, backup_dir)
             print(f"Database backed up to: {backup_dir}")
@@ -254,7 +254,7 @@ class TextVault:
     def remove_database(self):
         """Remove the entire database"""
         response = input(
-            "WARNING: This will remove ALL TDB files and uninstall the package!\n"
+            "WARNING: This will remove ALL tvault files and uninstall the package!\n"
             "Type 'confirm-delete-all' to proceed: "
         )
         
@@ -265,11 +265,11 @@ class TextVault:
                     shutil.rmtree(self.data_dir)
                 
                 # Remove binary
-                bin_path = Path.home() / ".local" / "bin" / "tdb"
+                bin_path = Path.home() / ".local" / "bin" / "tvault"
                 if bin_path.exists():
                     bin_path.unlink()
                 
-                print("TDB removed successfully.")
+                print("tvault removed successfully.")
                 print("Note: To uninstall the Python package, run: pip3 uninstall textvault")
                 return True
             except Exception as e:
@@ -310,7 +310,7 @@ def main():
     
     parser.add_argument(
         "--data-dir",
-        help="Custom data directory (default: ~/.local/lib/tdb)"
+        help="Custom data directory (default: ~/.local/lib/tvault/data)"
     )
     
     args = parser.parse_args()
@@ -327,21 +327,21 @@ def main():
         return 1
     
     # Initialize database
-    db = TextVault(args.data_dir)
+    tvault = TextVault(args.data_dir)
     
     # Execute operation
     operations = {
-        "create": lambda: db.create(args.filename, args.force),
-        "read": lambda: db.read(args.filename),
-        "write": lambda: db.write(args.filename),
-        "backup": lambda: db.backup(args.filename),
-        "recover": lambda: db.recover(args.filename),
-        "remove": lambda: db.remove(args.filename),
-        "removebak": lambda: db.remove_backup(args.filename),
-        "readbak": lambda: db.read_backup(args.filename),
-        "list": lambda: db.list_files(),
-        "dumpdb": lambda: db.backup_database(),
-        "rmdb": lambda: db.remove_database(),
+        "create": lambda: tvault.create(args.filename, args.force),
+        "read": lambda: tvault.read(args.filename),
+        "write": lambda: tvault.write(args.filename),
+        "backup": lambda: tvault.backup(args.filename),
+        "recover": lambda: tvault.recover(args.filename),
+        "remove": lambda: tvault.remove(args.filename),
+        "removebak": lambda: tvault.remove_backup(args.filename),
+        "readbak": lambda: tvault.read_backup(args.filename),
+        "list": lambda: tvault.list_files(),
+        "dumpdb": lambda: tvault.backup_database(),
+        "rmdb": lambda: tvault.remove_database(),
     }
     
     success = operations.get(args.operation, lambda: False)()

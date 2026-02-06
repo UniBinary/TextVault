@@ -1,22 +1,22 @@
 #!/bin/bash
 #
-# TDB (Text Database) wrapper script
-# Version: 1.0.0.1
+# tvault (Text Vault) wrapper script
+# Version: 1.1
 
 # Default installation path
-TDB_PY="${HOME}/.local/lib/tdb/tdb.py"
+TVAULT_PY="${HOME}/.local/lib/tvault/tvault.py"
 
-# Check if TDB is installed
-if [ ! -f "$TDB_PY" ]; then
-    echo "Error: TDB is not installed or not found at $TDB_PY"
-    echo "Please install with: pip3 install textdatabase"
+# Check if tvault is installed
+if [ ! -f "$TVAULT_PY" ]; then
+    echo "Error: tvault is not installed or not found at $TVAULT_PY"
+    echo "Please install with: pip3 install textvault"
     exit 1
 fi
 
 # Show help if no arguments
 if [ $# -eq 0 ]; then
-    echo "Text Database (TDB) - A lightweight text file management system"
-    echo "Usage: tdb <operation> [filename] [options]"
+    echo "Text Vault (tvault) - A lightweight text file management system"
+    echo "Usage: tvault <operation> [filename] [options]"
     echo ""
     echo "Operations:"
     echo "  new <file>      Create a new text file"
@@ -36,10 +36,10 @@ if [ $# -eq 0 ]; then
     echo "  --data-dir DIR  Use custom data directory"
     echo ""
     echo "Examples:"
-    echo "  tdb new notes"
-    echo "  tdb write notes"
-    echo "  tdb read notes"
-    echo "  tdb list"
+    echo "  tvault new notes"
+    echo "  tvault write notes"
+    echo "  tvault read notes"
+    echo "  tvault list"
     exit 0
 fi
 
@@ -50,17 +50,17 @@ shift
 # Handle operations without filename
 case "$OPERATION" in
     list|dumpdb|rmdb)
-        python3 "$TDB_PY" "$OPERATION" "$@"
+        python3 "$TVAULT_PY" "$OPERATION" "$@"
         ;;
     *)
         # Operations that require filename
         if [ $# -eq 0 ]; then
             echo "Error: Operation '$OPERATION' requires a filename!"
-            echo "Usage: tdb $OPERATION <filename>"
+            echo "Usage: tvault $OPERATION <filename>"
             exit 1
         fi
         FILENAME="$1"
         shift
-        python3 "$TDB_PY" "$OPERATION" "$FILENAME" "$@"
+        python3 "$TVAULT_PY" "$OPERATION" "$FILENAME" "$@"
         ;;
 esac

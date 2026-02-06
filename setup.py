@@ -12,7 +12,7 @@ long_description = readme_path.read_text(encoding="utf-8") if readme_path.exists
 
 setup(
     name="textvault",
-    version="1.0.0.1",
+    version="1.1",
     author="GQX",
     author_email="kill114514251@outlook.com",
     description="A lightweight text file management system for developers",
@@ -25,7 +25,7 @@ setup(
     },
     entry_points={
         "console_scripts": [
-            "tvault=tvault.tdb:main",
+            "tvault=tvault.tvault:main",
         ],
     },
     classifiers=[

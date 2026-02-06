@@ -43,22 +43,22 @@ pip3 install .
 
 ```bash
 # Create a new text file
-tdb new notes
+tvault new notes
 
 # Write content to the file
-tdb write notes
+tvault write notes
 
 # Read the file
-tdb read notes
+tvault read notes
 
 # Create a backup
-tdb backup notes
+tvault backup notes
 
 # List all files
-tdb list
+tvault list
 
 # Get help
-tdb --help
+tvault --help
 ```
 
 ## 📖 Usage
@@ -67,17 +67,17 @@ tdb --help
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `tdb new <file>` | Create a new text file | `tdb new notes` |
-| `tdb read <file>` | Read content from a file | `tdb read notes` |
-| `tdb write <file>` | Write content to a file (with backup) | `tdb write notes` |
-| `tdb backup <file>` | Create a backup of a file | `tdb backup notes` |
-| `tdb recover <file>` | Recover file from backup | `tdb recover notes` |
-| `tdb remove <file>` | Remove a file | `tdb remove notes` |
-| `tdb removebak <file>` | Remove backup file | `tdb removebak notes` |
-| `tdb readbak <file>` | Read content from backup | `tdb readbak notes` |
-| `tdb list` | List all files in database | `tdb list` |
-| `tdb dumpdb` | Backup entire database | `tdb dumpdb` |
-| `tdb rmdb` | Remove database and uninstall | `tdb rmdb` |
+| `tvault new <file>` | Create a new text file | `tvault new notes` |
+| `tvault read <file>` | Read content from a file | `tvault read notes` |
+| `tvault write <file>` | Write content to a file (with backup) | `tvault write notes` |
+| `tvault backup <file>` | Create a backup of a file | `tvault backup notes` |
+| `tvault recover <file>` | Recover file from backup | `tvault recover notes` |
+| `tvault remove <file>` | Remove a file | `tvault remove notes` |
+| `tvault removebak <file>` | Remove backup file | `tvault removebak notes` |
+| `tvault readbak <file>` | Read content from backup | `tvault readbak notes` |
+| `tvault list` | List all files in database | `tvault list` |
+| `tvault dumpdb` | Backup entire database | `tvault dumpdb` |
+| `tvault rmdb` | Remove database and uninstall | `tvault rmdb` |
 
 ### TOTP Feature
 
@@ -85,11 +85,11 @@ If a filename contains "tt" (e.g., `totp-secret`), TVault can generate TOTP code
 
 ```bash
 # Create a file with TOTP secret
-tdb new totp-secret
-tdb write totp-secret  # Enter your TOTP secret
+tvault new totp-secret
+tvault write totp-secret  # Enter your TOTP secret
 
 # Read the file to get current TOTP code
-tdb read totp-secret
+tvault read totp-secret
 # Output: TOTP: 123456
 ```
 
@@ -97,10 +97,10 @@ tdb read totp-secret
 
 ```bash
 # Force overwrite when creating files
-tdb new existing-file --force
+tvault new existing-file --force
 
 # Use custom data directory
-tdb new notes --data-dir /path/to/custom/dir
+tvault new notes --data-dir /path/to/custom/dir
 ```
 
 ## 🛠️ Development
@@ -109,11 +109,11 @@ tdb new notes --data-dir /path/to/custom/dir
 
 ```
 textvault/
-├── tdb/
+├── tvault/
 │   ├── __init__.py      # Package initialization
-│   ├── tdb.py           # Main CLI logic
+│   ├── tvault.py        # Main CLI logic
 │   ├── dev.py           # Development tools
-│   ├── tdb              # Shell wrapper script
+│   ├── tvault              # Shell wrapper script
 │   └── intros/          # Documentation files
 ├── setup.py             # Installation configuration
 └── README.md            # This file
@@ -126,7 +126,7 @@ textvault/
 pip3 install -e .
 
 # Run the development mode
-python3 -c "from tdb.dev import run; run()"
+python3 -c "from tvault.dev import run; run()"
 ```
 
 ## 🤝 Contributing
@@ -152,7 +152,7 @@ If you encounter any issues, please:
 
 ## 📄 License
 
-This project is licensed under the MIT License - see the [LICENSE](tdb/intros/LICENSE) file for details.
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
 ## 📞 Contact
 

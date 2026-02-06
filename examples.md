@@ -75,7 +75,7 @@ import json
 def get_tdb_file(filename):
     """Read a TVault file from Python"""
     result = subprocess.run(
-        ["tdb", "read", filename],
+        ["tvault", "read", filename],
         capture_output=True,
         text=True
     )
@@ -87,7 +87,7 @@ def get_tdb_file(filename):
 def write_tdb_file(filename, content):
     """Write to a TVault file from Python"""
     # Create the file first
-    subprocess.run(["tdb", "new", filename, "--force"])
+    subprocess.run(["tvault", "new", filename, "--force"])
     
     # For simple content, we could write directly
     # For complex content, consider using the interactive mode
