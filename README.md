@@ -1,4 +1,4 @@
-# TextVault (TVault)
+# UniBinaryTextVault (TVault)
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Python Version](https://img.shields.io/badge/python-3.7%2B-blue)](https://www.python.org/)
@@ -20,7 +20,7 @@ A lightweight, command-line text file management system with automatic backup su
 ### Method 1: Install from PyPI (Recommended)
 
 ```bash
-pip3 install textvault
+pip3 install UniBinaryTextVault
 ```
 
 After installation, you need to run the setup:

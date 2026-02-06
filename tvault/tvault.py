@@ -2,7 +2,7 @@
 """
 TextVault (TVault) - A lightweight text file management system
 Version: 1.1
-Author: GQX
+Author: UniBinary
 License: MIT
 """
 

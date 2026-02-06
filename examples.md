@@ -72,7 +72,7 @@ echo "Backup completed at $(date)"
 import subprocess
 import json
 
-def get_tdb_file(filename):
+def get_tvault_file(filename):
     """Read a TVault file from Python"""
     result = subprocess.run(
         ["tvault", "read", filename],
@@ -84,7 +84,7 @@ def get_tdb_file(filename):
     else:
         return None
 
-def write_tdb_file(filename, content):
+def write_tvault_file(filename, content):
     """Write to a TVault file from Python"""
     # Create the file first
     subprocess.run(["tvault", "new", filename, "--force"])
@@ -102,10 +102,10 @@ if __name__ == "__main__":
         "endpoint": "https://api.example.com"
     }
     
-    write_tdb_file("api-config", json.dumps(config, indent=2))
+    write_tvault_file("api-config", json.dumps(config, indent=2))
     
     # Later, read it back
-    content = get_tdb_file("api-config")
+    content = get_tvault_file("api-config")
     if content:
         print(f"Config: {content}")
 ```
@@ -236,7 +236,7 @@ tvault remove old-project-notes
 ### From Plain Text Files
 ```bash
 # If you have existing text files
-cp ~/notes.txt ~/.local/lib/tdb/notes.txt
+cp ~/notes.txt ~/.local/lib/tvault/notes.txt
 
 # Now you can use TVault with them
 tvault read notes
@@ -248,7 +248,7 @@ tvault backup notes
 # Backup everything before migration
 tvault dumpdb
 
-# The backup will be in ~/tdb_backup_YYYYMMDD_HHMMSS/
+# The backup will be in ~/tvault_backup_YYYYMMDD_HHMMSS/
 # You can restore files from there if needed
 ```
 
@@ -256,7 +256,7 @@ tvault dumpdb
 
 ### Common Issues and Solutions
 
-1. **"Command not found: tdb"**
+1. **"Command not found: tvault"**
    ```bash
    # Ensure ~/.local/bin is in your PATH
    echo 'export PATH="$PATH:$HOME/.local/bin"' >> ~/.bashrc
@@ -275,7 +275,7 @@ tvault dumpdb
    tvault read filename
    
    # Manually check backup
-   ls -la ~/.local/lib/tdb/*.bak
+   ls -la ~/.local/lib/tvault/*.bak
    ```
 
 4. **TOTP not generating codes**

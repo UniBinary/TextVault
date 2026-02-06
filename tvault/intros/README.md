@@ -12,9 +12,9 @@
 
 ## 项目信息
 - 此项目旨在为文本管理提供更好的平台
-- github：https://github.com/BinaryGuo/TextVault/
-- 问题反馈：https://github.com/BinaryGuo/TextVault/issues/
-- 联系邮箱（GQX）：kill114514251@outlook.com
+- github：https://github.com/UniBinary/TextVault/
+- 问题反馈：https://github.com/UniBinary/TextVault/issues/
+- 联系邮箱（UniBinary）：tp114514251@outlook.com
 
 ## 版本
 - 1.0.0.1
@@ -40,46 +40,46 @@
 
 - 第二步  
 进入Python IDLE
-> \>>> from tdb.dev import install  
+> \>>> from tvault.dev import install  
 > \>>> install()
 
 ### 运行方法
 ##### 注意：文件名均不添加如.txt/.bak这样的后缀（数据库自动加）
 以下命令均在shell中输入：
 #### 新建文件
-> tdb new <文件名>
+> tvault new <文件名>
 
 #### 备份文件
-> tdb backup <文件名>
+> tvault backup <文件名>
 
 #### 写文件
-> tdb write <文件名>
+> tvault write <文件名>
 
 #### 读文件
-> tdb <文件名>
+> tvault <文件名>
 或
-> tdb read <文件名>
+> tvault read <文件名>
 
 #### 用备份恢复
-> tdb recover <文件名>
+> tvault recover <文件名>
 
 #### 列出数据库文件列表
 > tdb
 
 #### 删除文件
-> tdb remove <文件名>
+> tvault remove <文件名>
 
 #### 删除文件备份
-> tdb removebak <文件名>
+> tvault removebak <文件名>
 
 #### 读文件备份
-> tdb readbak <文件名>
+> tvault readbak <文件名>
 
 #### 删除数据库
-> tdb rmdb
+> tvault rmdb
 
 #### 备份整个数据库
-> tdb dumpdb
+> tvault dumpdb
 
 ## 问题解决
 - 运行过程中出错：
@@ -98,15 +98,15 @@
 原因：您使用了Python IDLE访问TVault，这是不赞成的访问方法
 解决办法：使用shell访问
 
-> If TVault Has Any Issue,Please Upload it to My Email:kill114514251@outlook.com.If You Really Want to Remove TVault,Enter \"isiwrmdb\"(This Operation Will Also Remove This Package With the PIP):
+> If TVault Has Any Issue,Please Upload it to My Email:tp114514251@outlook.com.If You Really Want to Remove TVault,Enter \"isiwrmdb\"(This Operation Will Also Remove This Package With the PIP):
 
 原因：您正在使用rmdb
 解决办法：如您真的想卸载TVault，输入：isiwrmdb。如您放弃卸载，按回车即可退出此卸载程序
 
-> Error: Please Upload the Error Message to https://github.com/BinaryGuo/TextVault/issues/ or kill114514251@outlook.com
+> Error: Please Upload the Error Message to https://github.com/UniBinary/TextVault/issues/ or tp114514251@outlook.com
 
 原因：安装时的shell错误
-解决办法：将此信息前的所有错误信息反馈给https://github.com/BinaryGuo/TextVault/issues/ 或 kill114514251@outlook.com
+解决办法：将此信息前的所有错误信息反馈给https://github.com/UniBinary/TextVault/issues/ 或 tp114514251@outlook.com
 ## 鸣谢
 - 无
 

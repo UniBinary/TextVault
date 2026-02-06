@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Setup configuration for Text Database (TVault)
+Setup configuration for UniBinaryTextVault
 """
 
 from setuptools import setup, find_packages
@@ -11,14 +11,14 @@ readme_path = Path(__file__).parent / "README.md"
 long_description = readme_path.read_text(encoding="utf-8") if readme_path.exists() else ""
 
 setup(
-    name="textvault",
+    name="UniBinaryTextVault",
     version="1.1",
-    author="GQX",
-    author_email="kill114514251@outlook.com",
+    author="UniBinary",
+    author_email="tp114514251@outlook.com",
     description="A lightweight text file management system for developers",
     long_description=long_description,
     long_description_content_type="text/markdown",
-    url="https://github.com/BinaryGuo/TextVault",
+    url="https://github.com/UniBinary/TextVault",
     packages=find_packages(),
     package_data={
         "tvault": ["tvault", "intros/*", "intros/README.md", "intros/LICENSE"]
@@ -55,7 +55,8 @@ setup(
     python_requires=">=3.7",
     keywords="text, vault, file, management, backup, cli, secure",
     project_urls={
-        "Bug Reports": "https://github.com/BinaryGuo/TextVault/issues",
-        "Source": "https://github.com/BinaryGuo/TextVault",
+        "Bug Reports": "https://github.com/UniBinary/TextVault/issues",
+        "Source": "https://github.com/UniBinary/TextVault",
+        "PyPI": "https://pypi.org/project/UniBinaryTextVault/",
     },
 )
