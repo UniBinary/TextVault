@@ -12,20 +12,20 @@ long_description = readme_path.read_text(encoding="utf-8") if readme_path.exists
 
 setup(
     name="UniBinaryTextVault",
-    version="1.1",
+    version="2.1",
     author="UniBinary",
     author_email="tp114514251@outlook.com",
-    description="A lightweight text file management system for developers",
+    description="A lightweight text file management system with multi-vault support",
     long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/UniBinary/TextVault",
     packages=find_packages(),
     package_data={
-        "tvault": ["tvault.py",]
+        "tvault": ["*.py",]
     },
     entry_points={
         "console_scripts": [
-            "tvault=tvault.tvault:main",
+            "tvault=tvault.cli:main",
         ],
     },
     classifiers=[
@@ -45,7 +45,6 @@ setup(
         "Programming Language :: Python :: 3.14",
         "Operating System :: POSIX :: Linux",
         "Operating System :: MacOS :: MacOS X",
-        "Operating System :: Microsoft :: Windows",
         "Natural Language :: English",
     ],
     install_requires=[
