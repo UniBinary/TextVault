@@ -21,7 +21,7 @@ setup(
     url="https://github.com/UniBinary/TextVault",
     packages=find_packages(),
     package_data={
-        "tvault": ["tvault", "intros/*", "intros/README.md", "intros/LICENSE"]
+        "tvault": ["tvault.py",]
     },
     entry_points={
         "console_scripts": [
@@ -29,9 +29,8 @@ setup(
         ],
     },
     classifiers=[
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Developers",
-        "Intended Audience :: System Administrators",
         "Topic :: Utilities",
         "Topic :: Text Processing",
         "License :: OSI Approved :: MIT License",
@@ -43,16 +42,17 @@ setup(
         "Programming Language :: Python :: 3.11",
         "Programming Language :: Python :: 3.12",
         "Programming Language :: Python :: 3.13",
+        "Programming Language :: Python :: 3.14",
         "Operating System :: POSIX :: Linux",
         "Operating System :: MacOS :: MacOS X",
         "Operating System :: Microsoft :: Windows",
         "Natural Language :: English",
-        "Natural Language :: Chinese (Simplified)",
     ],
     install_requires=[
         "pyotp>=2.6.0",
     ],
-    python_requires=">=3.7",
+    python_requires=">=3.7" \
+    "",
     keywords="text, vault, file, management, backup, cli, secure",
     project_urls={
         "Bug Reports": "https://github.com/UniBinary/TextVault/issues",

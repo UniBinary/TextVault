@@ -6,6 +6,8 @@
 
 A lightweight, command-line text file management system with automatic backup support.
 
+**Version: 1.1**
+
 ## ✨ Features
 
 - **Simple CRUD operations**: Create, read, update, and delete text files
@@ -23,27 +25,18 @@ A lightweight, command-line text file management system with automatic backup su
 pip3 install UniBinaryTextVault
 ```
 
-After installation, you need to run the setup:
-
-```python
-# In Python interpreter
-from tvault.dev import install
-install()
-```
-
 ### Method 2: Install from source
 
 ```bash
 git clone https://github.com/UniBinary/TextVault.git
-cd TextVault
-pip3 install .
+pip3 install TextVault
 ```
 
 ## 🚀 Quick Start
 
 ```bash
 # Create a new text file
-tvault new notes
+tvault create notes
 
 # Write content to the file
 tvault write notes
@@ -67,7 +60,7 @@ tvault --help
 
 | Command | Description | Example |
 |---------|-------------|---------|
-| `tvault new <file>` | Create a new text file | `tvault new notes` |
+| `tvault create <file>` | Create a new text file | `tvault create notes` |
 | `tvault read <file>` | Read content from a file | `tvault read notes` |
 | `tvault write <file>` | Write content to a file (with backup) | `tvault write notes` |
 | `tvault backup <file>` | Create a backup of a file | `tvault backup notes` |
@@ -75,21 +68,21 @@ tvault --help
 | `tvault remove <file>` | Remove a file | `tvault remove notes` |
 | `tvault removebak <file>` | Remove backup file | `tvault removebak notes` |
 | `tvault readbak <file>` | Read content from backup | `tvault readbak notes` |
-| `tvault list` | List all files in database | `tvault list` |
-| `tvault dumpdb` | Backup entire database | `tvault dumpdb` |
-| `tvault rmdb` | Remove database and uninstall | `tvault rmdb` |
+| `tvault list` | List all files in vault | `tvault list` |
+| `tvault backup-vault` | Backup entire vault | `tvault backup-vault` |
+| `tvault remove-vault` | Remove vault and uninstall | `tvault remove-vault` |
 
 ### TOTP Feature
 
-If a filename contains "tt" (e.g., `totp-secret`), TVault can generate TOTP codes:
+If a filename contains "tt" (e.g., `tt-pypi`), TVault can generate TOTP codes while reading:
 
 ```bash
 # Create a file with TOTP secret
-tvault new totp-secret
-tvault write totp-secret  # Enter your TOTP secret
+tvault create tt-pypi
+tvault write tt-pypi  # Enter your TOTP secret key
 
 # Read the file to get current TOTP code
-tvault read totp-secret
+tvault read tt-pypi
 # Output: TOTP: 123456
 ```
 
@@ -97,10 +90,10 @@ tvault read totp-secret
 
 ```bash
 # Force overwrite when creating files
-tvault new existing-file --force
+tvault create existing-file --force
 
 # Use custom data directory
-tvault new notes --data-dir /path/to/custom/dir
+tvault create notes --data-dir /path/to/custom/dir
 ```
 
 ## 🛠️ Development
@@ -112,21 +105,9 @@ textvault/
 ├── tvault/
 │   ├── __init__.py      # Package initialization
 │   ├── tvault.py        # Main CLI logic
-│   ├── dev.py           # Development tools
-│   ├── tvault              # Shell wrapper script
-│   └── intros/          # Documentation files
 ├── setup.py             # Installation configuration
-└── README.md            # This file
-```
-
-### Running Tests
-
-```bash
-# Install development dependencies
-pip3 install -e .
-
-# Run the development mode
-python3 -c "from tvault.dev import run; run()"
+├── README.md            # This file
+└── LICENSE              # license
 ```
 
 ## 🤝 Contributing
@@ -168,4 +149,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ---
 
-**Note**: This is version 1.0.0.1. The project is actively maintained and improved.
+**Note**: This is version 1.1. The project is actively maintained and improved.

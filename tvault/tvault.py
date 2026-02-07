@@ -19,7 +19,7 @@ class TextVault:
     def __init__(self, data_dir=None):
         """Initialize the vault"""
         if data_dir is None:
-            self.data_dir = Path.home() / ".local" / "lib" / "tvault" / "data"
+            self.data_dir = Path.home() / ".local" / "lib" / "tvault"
         else:
             self.data_dir = Path(data_dir)
         
@@ -217,14 +217,14 @@ class TextVault:
             return False
     
     def list_files(self):
-        """List all files in the database"""
+        """List all files in the vault"""
         try:
             files = list(self.data_dir.glob("*.txt"))
             if not files:
-                print("No files in database.")
+                print("No files in vault.")
                 return True
             
-            print(f"Files in database ({len(files)} total):")
+            print(f"Files in vault ({len(files)} total):")
             print("-" * 40)
             for file in sorted(files):
                 size = file.stat().st_size
@@ -238,42 +238,36 @@ class TextVault:
             print(f"Error listing files: {e}")
             return False
     
-    def backup_database(self):
-        """Backup the entire database"""
+    def backup_vault(self):
+        """Backup the entire vault"""
         try:
             timestamp = datetime.now().strftime("%Y%m%d_%H%M%S")
             backup_dir = Path.home() / f"tvault_backup_{timestamp}"
             
             shutil.copytree(self.data_dir, backup_dir)
-            print(f"Database backed up to: {backup_dir}")
+            print(f"Vault backed up to: {backup_dir}")
             return True
         except Exception as e:
-            print(f"Error backing up database: {e}")
+            print(f"Error backing up vault: {e}")
             return False
     
-    def remove_database(self):
-        """Remove the entire database"""
+    def remove_vault(self):
+        """Remove the entire vault"""
         response = input(
-            "WARNING: This will remove ALL tvault files and uninstall the package!\n"
+            f"WARNING: This will remove ALL files under current data directory (current dir: {self.data_dir})!\n"
             "Type 'confirm-delete-all' to proceed: "
         )
         
         if response == "confirm-delete-all":
             try:
-                # Remove database directory
+                # Remove vault directory
                 if self.data_dir.exists():
                     shutil.rmtree(self.data_dir)
                 
-                # Remove binary
-                bin_path = Path.home() / ".local" / "bin" / "tvault"
-                if bin_path.exists():
-                    bin_path.unlink()
-                
-                print("tvault removed successfully.")
-                print("Note: To uninstall the Python package, run: pip3 uninstall textvault")
+                print("vault removed successfully.")
                 return True
             except Exception as e:
-                print(f"Error removing database: {e}")
+                print(f"Error removing vault: {e}")
                 return False
         else:
             print("Operation cancelled.")
@@ -283,7 +277,7 @@ class TextVault:
 def main():
     """Main entry point"""
     parser = ArgumentParser(
-        description="Text Database - A lightweight text file management system",
+        description="Text Vault - A lightweight text file management system",
         formatter_class=ArgumentDefaultsHelpFormatter
     )
     
@@ -291,7 +285,7 @@ def main():
         "operation",
         choices=[
             "create", "read", "write", "backup", "recover",
-            "remove", "removebak", "readbak", "list", "dumpdb", "rmdb"
+            "remove", "removebak", "readbak", "list", "backup-vault", "remove-vault"
         ],
         help="Operation to perform"
     )
@@ -310,7 +304,7 @@ def main():
     
     parser.add_argument(
         "--data-dir",
-        help="Custom data directory (default: ~/.local/lib/tvault/data)"
+        help="Custom data directory (default: ~/.local/lib/tvault)"
     )
     
     args = parser.parse_args()
@@ -326,7 +320,7 @@ def main():
         parser.print_help()
         return 1
     
-    # Initialize database
+    # Initialize vault
     tvault = TextVault(args.data_dir)
     
     # Execute operation
@@ -340,8 +334,8 @@ def main():
         "removebak": lambda: tvault.remove_backup(args.filename),
         "readbak": lambda: tvault.read_backup(args.filename),
         "list": lambda: tvault.list_files(),
-        "dumpdb": lambda: tvault.backup_database(),
-        "rmdb": lambda: tvault.remove_database(),
+        "backup-vault": lambda: tvault.backup_vault(),
+        "remove-vault": lambda: tvault.remove_vault(),
     }
     
     success = operations.get(args.operation, lambda: False)()
